@@ -27,7 +27,7 @@ export default class RatingFilter extends React.Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>
             Min Rating:<select
-              value={this.props.minumumRating}
+              value={this.props.minimumRating}
               onChange={this.handleRatingChange.bind(this)}
             >
               {this.getIntervals()}

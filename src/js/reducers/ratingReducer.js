@@ -1,9 +1,11 @@
+import { deepClone } from "../utils/deepClone.js";
+
 const initialState = {
-  minimumRating: 0
+  minimumRating: 3
 };
 
 const ratingReducer = (state = initialState, action) => {
-  var newState = Object.assign({}, state);
+  let newState = deepClone(state);
   switch (action.type) {
     case "SET_RATING_ACTION":
       //console.log("SET_RATING_ACTION " + action.payload);

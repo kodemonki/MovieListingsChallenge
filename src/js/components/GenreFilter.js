@@ -1,17 +1,19 @@
 import React from "react";
 
 export default class GenreFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { minumumRating: 1 };
-  }
-  getIntervals() {
+  getGenres() {
     if (this.props.genres !== undefined) {
       const keyList = this.props.genres.map((genre, i) => {
         return (
-          <option key={i} value={i}>
+          <label key={i}>
             {genre.name}
-          </option>
+            <input
+              name={genre.name}
+              type="checkbox"
+              checked={this.props.genres.checked}
+              onChange={this.handleGenreChange.bind(this)}
+            />
+          </label>
         );
       });
       return keyList;
@@ -20,22 +22,19 @@ export default class GenreFilter extends React.Component {
     }
   }
   handleSubmit() {
-    //this.props.changeOptions(this.state);
     event.preventDefault();
   }
-  handleIntervalChange() {}
+  handleGenreChange(event) {
+    this.props.setGenreAction({
+      name: event.target.name,
+      checked: event.target.checked
+    });
+  }
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>
-            Genre:<select
-              value={this.state.minumumRating}
-              onChange={this.handleIntervalChange.bind(this)}
-            >
-              {this.getIntervals()}
-            </select>
-          </label>
+          <label>{this.getGenres()}</label>
         </form>
       </div>
     );

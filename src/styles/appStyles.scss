@@ -7,3 +7,14 @@ body {
   font-size: 62.5%;
   line-height: 1.4;
 }
+
+.Movie {
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  min-height: 100px;
+  & p {
+    max-width: 150px;
+  }
+}
