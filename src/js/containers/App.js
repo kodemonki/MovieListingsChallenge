@@ -1,35 +1,46 @@
 import React from "react";
-import {connect} from "react-redux";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Dumb } from "../components/Dumb";
+import IntervalFilter from "../components/IntervalFilter";
+import GenreFilter from "../components/GenreFilter";
 import { dumbAction } from "../actions/dumbAction";
+import { getGenreAction } from "../actions/getGenreAction";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.getGenreAction();
+  }
   render() {
-    this.props.consoleLog('React dispatch');
-
-    return <Router>
-      <div className="App">
-        <h1>react-redux-webpack-babel-sass-boilerplate</h1>
-        <Dumb initialised={this.props.initialised}/>
-      </div>
-    </Router>;
+    console.log(this.props);
+    return (
+      <Router>
+        <div className="App">
+          <h1>MovieListingsChallenge</h1>
+          <IntervalFilter />
+          <GenreFilter
+            getGenreAction={this.props.getGenreAction}
+            genres={this.props.genres}
+          />
+        </div>
+      </Router>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    initialised: state.dumbReducer.initialised
-  }
+    genres: state.genreReducer.genres
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    consoleLog: (message) => {
-      dispatch(dumbAction(message))
+    getGenreAction: payload => {
+      dispatch(getGenreAction(payload));
     }
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
