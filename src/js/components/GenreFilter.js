@@ -4,21 +4,20 @@ export default class GenreFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = { minumumRating: 1 };
-    console.log(this.props);
   }
   getIntervals() {
-    const intervals = [];
-    for (let i = 0; i <= 10; i = i + 0.5) {
-      intervals.push(i);
+    if (this.props.genres !== undefined) {
+      const keyList = this.props.genres.map((genre, i) => {
+        return (
+          <option key={i} value={i}>
+            {genre.name}
+          </option>
+        );
+      });
+      return keyList;
+    } else {
+      return null;
     }
-    const keyList = intervals.map((interval, i) => {
-      return (
-        <option key={i} value={i}>
-          {interval}
-        </option>
-      );
-    });
-    return keyList;
   }
   handleSubmit() {
     //this.props.changeOptions(this.state);
