@@ -36,7 +36,13 @@ class App extends React.Component {
             setGenreAction={this.props.setGenreAction}
             genres={this.props.genres}
           />
-          <MoviesList movies={this.props.movies} />
+          <MoviesList
+            movies={this.props.movies}
+            minimumRating={this.props.minimumRating}
+            genres={this.props.genres}
+            totalPages={this.props.totalPages}
+            pagesLoaded={this.props.pagesLoaded}
+          />
         </div>
       </Router>
     );
@@ -49,6 +55,7 @@ const mapStateToProps = state => {
     initialLoad: state.movieReducer.initialLoad,
     remainingLoad: state.movieReducer.remainingLoad,
     totalPages: state.movieReducer.totalPages,
+    pagesLoaded: state.movieReducer.pagesLoaded,
     minimumRating: state.ratingReducer.minimumRating
   };
 };
