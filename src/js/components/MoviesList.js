@@ -60,7 +60,7 @@ export default class MoviesList extends React.Component {
     }
   }
   getMovies() {
-    if (this.props.pagesLoaded == this.props.totalPages) {
+    if (this.props.movies != undefined) {
       const items = this.props.movies.map((movie, i) => {
         if (this.checkRating(movie)) {
           return null;
@@ -84,7 +84,6 @@ export default class MoviesList extends React.Component {
     }
   }
   render() {
-    //console.log(this.props);
     return (
       <div>
         <h1>MoviesList</h1>

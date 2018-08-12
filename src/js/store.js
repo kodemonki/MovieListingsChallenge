@@ -13,5 +13,4 @@ export default createStore(
   }),
   {},
   applyMiddleware(thunk)
-  //applyMiddleware(createLogger(), thunk)
 );
