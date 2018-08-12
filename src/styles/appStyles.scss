@@ -8,13 +8,22 @@ body {
   line-height: 1.4;
 }
 
+label {
+  margin: 5px;
+}
+
 .Movie {
   float: left;
   padding: 10px;
   margin: 10px;
   background-color: white;
-  min-height: 150px;
+  min-height: 420px;
   & p {
-    max-width: 150px;
+    background-color: lightgrey;
+    width: 200px;
+    height: 40px;
+  }
+  & img {
+    width: 200px;
   }
 }

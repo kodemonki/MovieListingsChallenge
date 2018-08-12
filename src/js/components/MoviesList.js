@@ -46,6 +46,19 @@ export default class MoviesList extends React.Component {
     }
     return str;
   }
+  checkPosterPath(path) {
+    if (path == null) {
+      return (
+        <img
+          src={
+            "https://dummyimage.com/200x300/000000/fff.png&text=file+not+found"
+          }
+        />
+      );
+    } else {
+      return <img src={"https://image.tmdb.org/t/p/w200" + path} />;
+    }
+  }
   getMovies() {
     if (this.props.pagesLoaded == this.props.totalPages) {
       const items = this.props.movies.map((movie, i) => {
@@ -56,9 +69,11 @@ export default class MoviesList extends React.Component {
         } else {
           return (
             <div className="Movie" key={i}>
-              <p>{movie.title}</p>
-              <p>{movie.vote_average}</p>
+              <p>
+                <strong>{movie.title}</strong>
+              </p>
               <p>{this.getGenres(movie)}</p>
+              {this.checkPosterPath(movie.poster_path)}
             </div>
           );
         }

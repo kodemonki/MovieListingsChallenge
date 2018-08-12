@@ -33,9 +33,7 @@ export default class GenreFilter extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>{this.getGenres()}</label>
-        </form>
+        <form onSubmit={this.handleSubmit.bind(this)}>{this.getGenres()}</form>
       </div>
     );
   }
