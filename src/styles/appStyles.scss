@@ -12,11 +12,16 @@ label {
   margin: 5px;
 }
 
+form {
+  margin: 10px;
+}
+
 .Movie {
+  border: 2px solid black;
   float: left;
   padding: 10px;
   margin: 10px;
-  background-color: white;
+  background-color: darkgrey;
   min-height: 420px;
   & p {
     background-color: lightgrey;
@@ -26,5 +31,6 @@ label {
   }
   & img {
     width: 200px;
+    height: 300px;
   }
 }

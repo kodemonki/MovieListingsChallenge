@@ -8,7 +8,6 @@ import MoviesList from "../components/MoviesList";
 
 import { getGenreAction } from "../actions/getGenreAction";
 import { setGenreAction } from "../actions/setGenreAction";
-import { checkGenreAction } from "../actions/checkGenreAction";
 import { setRatingAction } from "../actions/setRatingAction";
 import { getFirstMoviesAction } from "../actions/getFirstMoviesAction";
 import { getRemainingMoviesAction } from "../actions/getRemainingMoviesAction";
@@ -42,6 +41,7 @@ class App extends React.Component {
             getGenreAction={this.props.getGenreAction}
             setGenreAction={this.props.setGenreAction}
             genres={this.props.genres}
+            usedGenres={this.props.usedGenres}
           />
           <MoviesList
             movies={this.props.movies}
@@ -59,8 +59,6 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     genres: state.genreReducer.genres,
-    doubleCheckedGenre: state.genreReducer.doubleCheckedGenre,
-
     movies: state.movieReducer.movies,
     usedGenres: state.movieReducer.usedGenres,
     initialLoad: state.movieReducer.initialLoad,
@@ -77,9 +75,6 @@ const mapDispatchToProps = dispatch => {
     },
     setGenreAction: payload => {
       dispatch(setGenreAction(payload));
-    },
-    checkGenreAction: payload => {
-      dispatch(checkGenreAction(payload));
     },
     setRatingAction: payload => {
       dispatch(setRatingAction(payload));

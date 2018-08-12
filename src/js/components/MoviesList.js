@@ -62,12 +62,12 @@ export default class MoviesList extends React.Component {
   getMovies() {
     if (this.props.movies != undefined) {
       const items = this.props.movies.map((movie, i) => {
-        if (this.checkGenre(movie)) {
-          if (this.checkRating(movie)) {
+        if (this.checkRating(movie)) {
+          if (this.checkGenre(movie)) {
             return (
               <div className="Movie" key={i}>
                 <p>
-                  <strong>{movie.title}</strong> {" " + movie.vote_average}
+                  <strong>{movie.title}</strong>
                 </p>
                 <p>{this.getGenres(movie)}</p>
                 {this.checkPosterPath(movie.poster_path)}
