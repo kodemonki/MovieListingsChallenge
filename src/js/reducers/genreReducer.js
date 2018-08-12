@@ -1,11 +1,16 @@
 import { deepClone } from "../utils/deepClone.js";
 
 const genreReducer = (state = { doubleCheckedGenre: false }, action) => {
-  //console.log(state);
-  let newState = deepClone(state);
+  let newState = state;
   switch (action.type) {
     case "GET_GENRE_RESPONSE":
-      //console.log("GET_GENRE_RESPONSE ", action.payload);
+      //////////////////////////////
+      // GET_GENRE_RESPONSE
+      //////////////////////////////
+      // This sets the genre list
+      // from the api data
+      //////////////////////////////
+      newState = deepClone(state);
       newState.genres = action.payload.data.genres;
       for (let i = 0; i < newState.genres.length; i++) {
         newState.genres[i].checked = false;
@@ -13,7 +18,14 @@ const genreReducer = (state = { doubleCheckedGenre: false }, action) => {
 
       break;
     case "SET_GENRE_ACTION":
-      //console.log("SET_GENRE_ACTION ", action.payload);
+      //////////////////////////////
+      // SET_GENRE_ACTION
+      //////////////////////////////
+      // This sets the genre list
+      // checked values from the
+      // input form
+      //////////////////////////////
+      newState = deepClone(state);
       for (let i = 0; i < newState.genres.length; i++) {
         if (newState.genres[i].name == action.payload.name) {
           newState.genres[i].checked = action.payload.checked;

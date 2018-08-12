@@ -5,10 +5,16 @@ const initialState = {
 };
 
 const ratingReducer = (state = initialState, action) => {
-  let newState = deepClone(state);
+  let newState = state;
   switch (action.type) {
     case "SET_RATING_ACTION":
-      //console.log("SET_RATING_ACTION " + action.payload);
+      //////////////////////////////
+      // SET_RATING_ACTION
+      //////////////////////////////
+      // This is triggered by the
+      // rating input form
+      //////////////////////////////
+      newState = deepClone(state);
       newState.minimumRating = Number(action.payload);
       break;
   }

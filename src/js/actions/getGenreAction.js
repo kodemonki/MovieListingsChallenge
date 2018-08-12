@@ -1,5 +1,9 @@
 import axios from "axios";
-
+//////////////////////////////
+// getGenreAction
+//////////////////////////////
+// This loads the genre data
+//////////////////////////////
 export function getGenreAction() {
   return dispatch => {
     axios

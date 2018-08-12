@@ -1,6 +1,12 @@
 import React from "react";
 
 export default class MoviesList extends React.Component {
+  //////////////////////////////
+  // checkGenre
+  //////////////////////////////
+  // This checkes if the movie
+  // matches the genres list
+  //////////////////////////////
   checkGenre(movie) {
     if (movie.genre_ids === undefined) {
       return false;
@@ -27,6 +33,12 @@ export default class MoviesList extends React.Component {
       }
     }
   }
+  //////////////////////////////
+  // checkRating
+  //////////////////////////////
+  // This checkes if the movie
+  // matches the minimum rating
+  //////////////////////////////
   checkRating(movie) {
     if (Number(movie.vote_average) >= Number(this.props.minimumRating)) {
       return true;
@@ -34,6 +46,12 @@ export default class MoviesList extends React.Component {
       return false;
     }
   }
+  //////////////////////////////
+  // getGenres
+  //////////////////////////////
+  // This generates a list of
+  // genre names for a movie
+  //////////////////////////////
   getGenres(movie) {
     let str = "";
     for (let i = 0; i < movie.genre_ids.length; i = i + 1) {
@@ -46,6 +64,12 @@ export default class MoviesList extends React.Component {
     }
     return str;
   }
+  //////////////////////////////
+  // checkPosterPath
+  //////////////////////////////
+  // This adds a place holder
+  // if the image is missing
+  //////////////////////////////
   checkPosterPath(path) {
     if (path == null) {
       return (
@@ -59,6 +83,12 @@ export default class MoviesList extends React.Component {
       return <img src={"https://image.tmdb.org/t/p/w200" + path} />;
     }
   }
+  //////////////////////////////
+  // getMovies
+  //////////////////////////////
+  // This geneerates the movie
+  // divs, that get diaplyed
+  //////////////////////////////
   getMovies() {
     if (this.props.movies != undefined) {
       const items = this.props.movies.map((movie, i) => {

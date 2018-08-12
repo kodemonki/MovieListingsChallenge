@@ -1,6 +1,13 @@
 import React from "react";
 
 export default class GenreFilter extends React.Component {
+  //////////////////////////////
+  // getGenres
+  //////////////////////////////
+  // This generates the genres
+  // list based on the usedGenres
+  // property
+  //////////////////////////////
   getGenres() {
     if (this.props.usedGenres !== undefined) {
       const keyList = this.props.genres.map((genre, i) => {

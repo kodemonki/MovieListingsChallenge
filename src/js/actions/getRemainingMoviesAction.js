@@ -1,5 +1,14 @@
 import axios from "axios";
-
+//////////////////////////////
+// getRemainingMoviesAction
+//////////////////////////////
+// This loads the rest of the
+// movie list pages, it needs
+// to be sequenced, as order
+// could be broken. It currently,
+// might go wrong under
+// certain circimstances.
+//////////////////////////////
 export function getRemainingMoviesAction(totalPages) {
   return dispatch => {
     const url =

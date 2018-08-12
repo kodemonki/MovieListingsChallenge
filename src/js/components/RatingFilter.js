@@ -1,6 +1,12 @@
 import React from "react";
 
 export default class RatingFilter extends React.Component {
+  //////////////////////////////
+  // getIntervals
+  //////////////////////////////
+  // This generated the rating
+  // optionList
+  //////////////////////////////
   getIntervals() {
     const intervals = [];
     for (let i = 0; i <= 10; i = i + 0.5) {

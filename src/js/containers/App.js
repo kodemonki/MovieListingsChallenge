@@ -13,21 +13,27 @@ import { getFirstMoviesAction } from "../actions/getFirstMoviesAction";
 import { getRemainingMoviesAction } from "../actions/getRemainingMoviesAction";
 
 class App extends React.Component {
+  //////////////////////////////
+  // componentDidMount
+  //////////////////////////////
+  // This gets the genre data
+  // and gets the first page
+  // of the movies list
+  //////////////////////////////
   componentDidMount() {
     this.props.getGenreAction();
     this.props.getFirstMoviesAction();
   }
+  //////////////////////////////
+  // render
+  //////////////////////////////
+  // once the first page is
+  // loaded, it starts the
+  // remaing pages load sequence
+  //////////////////////////////
   render() {
-    if (this.props.initialLoad === true) {
-      if (this.props.remainingLoad === false) {
-        this.props.getRemainingMoviesAction(this.props.totalPages);
-      } else {
-        if (this.props.pagesLoaded == this.props.totalPages) {
-          if (this.props.doubleCheckedGenre == false) {
-            this.props.checkGenreAction({ usedGenres: this.props.usedGenres });
-          }
-        }
-      }
+    if (this.props.initialLoad === true && this.props.remainingLoad === false) {
+      this.props.getRemainingMoviesAction(this.props.totalPages);
     }
     return (
       <Router>
@@ -49,7 +55,6 @@ class App extends React.Component {
             genres={this.props.genres}
             totalPages={this.props.totalPages}
             pagesLoaded={this.props.pagesLoaded}
-            checkGenreAction={this.props.checkGenreAction}
           />
         </div>
       </Router>

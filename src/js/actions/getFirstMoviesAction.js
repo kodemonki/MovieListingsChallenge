@@ -1,5 +1,10 @@
 import axios from "axios";
-
+//////////////////////////////
+// getFirstMoviesAction
+//////////////////////////////
+// This loads the first page of
+// api data data
+//////////////////////////////
 export function getFirstMoviesAction() {
   return dispatch => {
     axios
