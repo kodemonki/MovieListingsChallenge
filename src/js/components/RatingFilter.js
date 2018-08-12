@@ -6,14 +6,14 @@ export default class RatingFilter extends React.Component {
     for (let i = 0; i <= 10; i = i + 0.5) {
       intervals.push(i);
     }
-    const keyList = intervals.map((interval, i) => {
+    const optionList = intervals.map((interval, i) => {
       return (
         <option key={i} value={interval}>
           {interval}
         </option>
       );
     });
-    return keyList;
+    return optionList;
   }
   handleSubmit() {
     event.preventDefault();

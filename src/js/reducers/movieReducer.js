@@ -16,7 +16,20 @@ const movieReducer = (
       newState.totalPages = action.payload.data.total_pages;
       newState.pagesLoaded = newState.pagesLoaded + 1;
       newState.initialLoad = true;
-      newState.movies = action.payload.data.results;
+      newState.usedGenres = [];
+      newState.movies = [];
+      for (let i = 0; i < action.payload.data.results.length; i++) {
+        newState.movies.push(action.payload.data.results[i]);
+        for (
+          let n = 0;
+          n < action.payload.data.results[i].genre_ids.length;
+          n++
+        ) {
+          newState.usedGenres[
+            action.payload.data.results[i].genre_ids[n]
+          ] = true;
+        }
+      }
       break;
     case "GET_FIRST_MOVIES_ERROR":
       console.log("GET_FIRST_MOVIES_ERROR ", action.error);
@@ -27,6 +40,15 @@ const movieReducer = (
       newState.pagesLoaded = newState.pagesLoaded + 1;
       for (let i = 0; i < action.payload.data.results.length; i++) {
         newState.movies.push(action.payload.data.results[i]);
+        for (
+          let n = 0;
+          n < action.payload.data.results[i].genre_ids.length;
+          n++
+        ) {
+          newState.usedGenres[
+            action.payload.data.results[i].genre_ids[n]
+          ] = true;
+        }
       }
       break;
     case "GET_REMAINING_MOVIES_ERROR":

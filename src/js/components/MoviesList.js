@@ -21,21 +21,21 @@ export default class MoviesList extends React.Component {
         }
       }
       if (checked) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     }
   }
   checkRating(movie) {
-    if (Number(movie.vote_average) <= Number(this.props.minimumRating)) {
+    if (Number(movie.vote_average) >= Number(this.props.minimumRating)) {
       return true;
     } else {
       return false;
     }
   }
   getGenres(movie) {
-    var str = "";
+    let str = "";
     for (let i = 0; i < movie.genre_ids.length; i = i + 1) {
       for (let n = 0; n < this.props.genres.length; n = n + 1) {
         if (this.props.genres[n].id == movie.genre_ids[i]) {
@@ -62,20 +62,18 @@ export default class MoviesList extends React.Component {
   getMovies() {
     if (this.props.movies != undefined) {
       const items = this.props.movies.map((movie, i) => {
-        if (this.checkRating(movie)) {
-          return null;
-        } else if (this.checkGenre(movie)) {
-          return null;
-        } else {
-          return (
-            <div className="Movie" key={i}>
-              <p>
-                <strong>{movie.title}</strong>
-              </p>
-              <p>{this.getGenres(movie)}</p>
-              {this.checkPosterPath(movie.poster_path)}
-            </div>
-          );
+        if (this.checkGenre(movie)) {
+          if (this.checkRating(movie)) {
+            return (
+              <div className="Movie" key={i}>
+                <p>
+                  <strong>{movie.title}</strong> {" " + movie.vote_average}
+                </p>
+                <p>{this.getGenres(movie)}</p>
+                {this.checkPosterPath(movie.poster_path)}
+              </div>
+            );
+          }
         }
       });
       return items;

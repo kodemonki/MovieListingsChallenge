@@ -8,6 +8,7 @@ import MoviesList from "../components/MoviesList";
 
 import { getGenreAction } from "../actions/getGenreAction";
 import { setGenreAction } from "../actions/setGenreAction";
+import { checkGenreAction } from "../actions/checkGenreAction";
 import { setRatingAction } from "../actions/setRatingAction";
 import { getFirstMoviesAction } from "../actions/getFirstMoviesAction";
 import { getRemainingMoviesAction } from "../actions/getRemainingMoviesAction";
@@ -21,6 +22,12 @@ class App extends React.Component {
     if (this.props.initialLoad === true) {
       if (this.props.remainingLoad === false) {
         this.props.getRemainingMoviesAction(this.props.totalPages);
+      } else {
+        if (this.props.pagesLoaded == this.props.totalPages) {
+          if (this.props.doubleCheckedGenre == false) {
+            this.props.checkGenreAction({ usedGenres: this.props.usedGenres });
+          }
+        }
       }
     }
     return (
@@ -42,6 +49,7 @@ class App extends React.Component {
             genres={this.props.genres}
             totalPages={this.props.totalPages}
             pagesLoaded={this.props.pagesLoaded}
+            checkGenreAction={this.props.checkGenreAction}
           />
         </div>
       </Router>
@@ -51,7 +59,10 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     genres: state.genreReducer.genres,
+    doubleCheckedGenre: state.genreReducer.doubleCheckedGenre,
+
     movies: state.movieReducer.movies,
+    usedGenres: state.movieReducer.usedGenres,
     initialLoad: state.movieReducer.initialLoad,
     remainingLoad: state.movieReducer.remainingLoad,
     totalPages: state.movieReducer.totalPages,
@@ -66,6 +77,9 @@ const mapDispatchToProps = dispatch => {
     },
     setGenreAction: payload => {
       dispatch(setGenreAction(payload));
+    },
+    checkGenreAction: payload => {
+      dispatch(checkGenreAction(payload));
     },
     setRatingAction: payload => {
       dispatch(setRatingAction(payload));

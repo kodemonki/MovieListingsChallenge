@@ -9,7 +9,7 @@ const ratingReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_RATING_ACTION":
       //console.log("SET_RATING_ACTION " + action.payload);
-      newState.minimumRating = action.payload;
+      newState.minimumRating = Number(action.payload);
       break;
   }
   return newState;
