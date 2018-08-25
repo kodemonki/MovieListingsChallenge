@@ -9,8 +9,7 @@ import MoviesList from "../components/MoviesList";
 import { getGenreAction } from "../actions/getGenreAction";
 import { setGenreAction } from "../actions/setGenreAction";
 import { setRatingAction } from "../actions/setRatingAction";
-import { getFirstMoviesAction } from "../actions/getFirstMoviesAction";
-import { getRemainingMoviesAction } from "../actions/getRemainingMoviesAction";
+import { getMoviesAction } from "../actions/getMoviesAction";
 
 class App extends React.Component {
   //////////////////////////////
@@ -22,7 +21,7 @@ class App extends React.Component {
   //////////////////////////////
   componentDidMount() {
     this.props.getGenreAction();
-    this.props.getFirstMoviesAction();
+    this.props.getMoviesAction();
   }
   //////////////////////////////
   // render
@@ -32,9 +31,6 @@ class App extends React.Component {
   // remaing pages load sequence
   //////////////////////////////
   render() {
-    if (this.props.initialLoad === true && this.props.remainingLoad === false) {
-      this.props.getRemainingMoviesAction(this.props.totalPages);
-    }
     return (
       <Router>
         <div className="App">
@@ -53,8 +49,6 @@ class App extends React.Component {
             movies={this.props.movies}
             minimumRating={this.props.minimumRating}
             genres={this.props.genres}
-            totalPages={this.props.totalPages}
-            pagesLoaded={this.props.pagesLoaded}
           />
         </div>
       </Router>
@@ -66,10 +60,6 @@ const mapStateToProps = state => {
     genres: state.genreReducer.genres,
     movies: state.movieReducer.movies,
     usedGenres: state.movieReducer.usedGenres,
-    initialLoad: state.movieReducer.initialLoad,
-    remainingLoad: state.movieReducer.remainingLoad,
-    totalPages: state.movieReducer.totalPages,
-    pagesLoaded: state.movieReducer.pagesLoaded,
     minimumRating: state.ratingReducer.minimumRating
   };
 };
@@ -84,11 +74,8 @@ const mapDispatchToProps = dispatch => {
     setRatingAction: payload => {
       dispatch(setRatingAction(payload));
     },
-    getFirstMoviesAction: payload => {
-      dispatch(getFirstMoviesAction(payload));
-    },
-    getRemainingMoviesAction: payload => {
-      dispatch(getRemainingMoviesAction(payload));
+    getMoviesAction: payload => {
+      dispatch(getMoviesAction(payload));
     }
   };
 };
