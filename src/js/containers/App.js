@@ -31,6 +31,7 @@ class App extends React.Component {
   // remaing pages load sequence
   //////////////////////////////
   render() {
+    console.log('render');
     return (
       <Router>
         <div className="App">
